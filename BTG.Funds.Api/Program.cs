@@ -22,15 +22,13 @@ builder.Services.AddSingleton<IMongoDatabase>(sp =>
     return client.GetDatabase("BTGFundsDB");
 });
 
-var allowedOrigins = "_allowedOrigins";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: allowedOrigins, policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
+        policy.AllowAnyOrigin()
               .AllowAnyMethod()
-              .AllowCredentials();
+              .AllowAnyHeader();
     });
 });
 
@@ -57,7 +55,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors(allowedOrigins);
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
