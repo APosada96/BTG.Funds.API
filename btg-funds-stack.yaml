@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  BTG Funds CloudFormation Stack - Infraestructura completa
+  (EC2 backend .NET + S3 frontend Angular + Seguridad básica)
+
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Nombre del par de llaves EC2 existente
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    Description: Tipo de instancia (free tier)
+  SSHLocation:
+    Type: String
+    Default: 0.0.0.0/0
+    Description: IPs permitidas para conexión SSH
+  BucketName:
+    Type: String
+    Description: Nombre único del bucket para el frontend Angular
+
+Resources:
+  # 🔒 Security Group
+  BackendSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Seguridad para la API BTG Funds
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref SSHLocation
+        - IpProtocol: tcp
+          FromPort: 5016
+          ToPort: 5016
+          CidrIp: 0.0.0.0/0
+
+  # 💻 EC2 Instance (Backend)
+  BTGFundsInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      SecurityGroupIds:
+        - !Ref BackendSecurityGroup
+      ImageId: ami-0c02fb55956c7d316  # Amazon Linux 2023 (us-east-2)
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          amazon-linux-extras enable dotnet8
+          yum install -y dotnet-sdk-8.0 git
+          cd /home/ec2-user
+          git clone https://github.com/<TU-USUARIO>/BTG.Funds.API.git
+          cd BTG.Funds.API/BTG.Funds.Api
+          dotnet publish -c Release -o out
+          nohup dotnet out/BTG.Funds.Api.dll --urls "http://0.0.0.0:5016" > /home/ec2-user/api.log 2>&1 &
+
+  # 🌐 Bucket S3 (Frontend)
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
+  # 🌍 Política pública de acceso
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadGetObject
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Sub "${FrontendBucket.Arn}/*"
+
+Outputs:
+  BackendURL:
+    Description: URL pública del backend API (.NET)
+    Value: !Join ["", ["http://", !GetAtt BTGFundsInstance.PublicDnsName, ":5016"]]
+
+  FrontendURL:
+    Description: URL del sitio web Angular en S3
+    Value: !GetAtt FrontendBucket.WebsiteURL
