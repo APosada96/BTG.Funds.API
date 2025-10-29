@@ -1,0 +1,15 @@
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\bin\Debug\net8.0\BTG.Funds.Application.deps.json
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\bin\Debug\net8.0\BTG.Funds.Application.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\bin\Debug\net8.0\BTG.Funds.Application.pdb
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\bin\Debug\net8.0\BTG.Funds.Domain.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\bin\Debug\net8.0\BTG.Funds.Domain.pdb
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.csproj.AssemblyReference.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.AssemblyInfoInputs.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.AssemblyInfo.cs
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.csproj.CoreCompileInputs.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Fund.4DA1A092.Up2Date
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\refint\BTG.Funds.Application.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\BTG.Funds.Application.pdb
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Application\obj\Debug\net8.0\ref\BTG.Funds.Application.dll

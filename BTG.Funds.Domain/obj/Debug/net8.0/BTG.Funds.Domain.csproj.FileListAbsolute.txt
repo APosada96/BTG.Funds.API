@@ -1,0 +1,12 @@
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\bin\Debug\net8.0\BTG.Funds.Domain.deps.json
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\bin\Debug\net8.0\BTG.Funds.Domain.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\bin\Debug\net8.0\BTG.Funds.Domain.pdb
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.csproj.AssemblyReference.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.AssemblyInfoInputs.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.AssemblyInfo.cs
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.csproj.CoreCompileInputs.cache
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\refint\BTG.Funds.Domain.dll
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\BTG.Funds.Domain.pdb
+C:\Users\javier.posada\Documents\BTG.Funds.sln\BTG.Funds.Domain\obj\Debug\net8.0\ref\BTG.Funds.Domain.dll
