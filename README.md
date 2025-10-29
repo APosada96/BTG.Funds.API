@@ -1,8 +1,7 @@
-# 🏦 BTG Funds - Full Cloud Deployment Guide
+# 🏦 BTG Funds - Backend Deployment Guide
 
 Proyecto de ejemplo que demuestra un entorno completo de despliegue en la nube utilizando:
 - **Backend:** .NET 8 Web API hospedado en EC2  
-- **Frontend:** Angular hospedado en Amazon S3 (con hosting estático)  
 - **Base de Datos:** MongoDB Atlas (DBaaS gestionado)  
 - **Infraestructura:** AWS CloudFormation (Infraestructura como código)
 
@@ -39,7 +38,6 @@ BTG.Funds.API/
 | **KeyName** | Par de llaves EC2 existente (ej: `btg-key`) |
 | **InstanceType** | `t2.micro` (capa gratuita) |
 | **SSHLocation** | IP desde la que te conectarás (ej: `0.0.0.0/0`) |
-| **BucketName** | Nombre único para el frontend (ej: `btg-funds-frontend-jposada`) |
 
 5. Clic en **Next** → **Create Stack**
 
@@ -53,7 +51,6 @@ Al finalizar, CloudFormation mostrará las siguientes **Outputs**:
 | Output | Descripción |
 |---------|-------------|
 | **BackendURL** | URL pública de la API .NET |
-| **FrontendURL** | URL del sitio Angular en S3 |
 
 ---
 
@@ -115,52 +112,7 @@ mongosh "mongodb+srv://cluster.egnxniz.mongodb.net/"   --username btguser --pass
 
 ---
 
-## 🌐 5. Frontend Angular en Amazon S3
-
-### 🔹 Paso 1: Compilar el proyecto Angular
-En tu entorno local del frontend:
-```bash
-ng build --configuration production
-```
-
-Esto genera la carpeta:
-```
-dist/btg-funds-web/browser/
-```
-
-### 🔹 Paso 2: Subir archivos a S3
-```bash
-aws s3 sync dist/btg-funds-web/browser s3://btg-funds-frontend-jposada --delete
-```
-
-### 🔹 Paso 3: Verificar URL pública
-Tu sitio estará disponible en:
-```
-http://btg-funds-frontend-jposada.s3-website.us-east-2.amazonaws.com
-```
-
----
-
-## 🔄 6. Conexión Frontend ↔ Backend
-
-Edita el archivo `src/environments/environment.prod.ts` de Angular:
-
-```typescript
-export const environment = {
-  production: true,
-  apiUrl: 'http://<Public-DNS-EC2>:5016'
-};
-```
-
-Vuelve a compilar y sincroniza con S3:
-```bash
-ng build --configuration production
-aws s3 sync dist/btg-funds-web/browser s3://btg-funds-frontend-jposada --delete
-```
-
----
-
-## 🔐 7. Seguridad y CORS
+## 🔐 5. Seguridad y CORS
 
 En el backend (`Program.cs`):
 
@@ -180,13 +132,10 @@ app.UseCors("AllowFrontend");
 
 ---
 
-## 🧩 8. Verificación final
+## 🧩 6. Verificación final
 
 ✅ **Swagger:**  
 `http://<EC2-DNS>:5016/swagger/index.html`
-
-✅ **Frontend (Angular):**  
-`http://btg-funds-frontend-jposada.s3-website.us-east-2.amazonaws.com`
 
 ✅ **MongoDB Atlas:**  
 Verifica colecciones:
@@ -198,7 +147,7 @@ BTGFundsDB
 
 ---
 
-## 🧰 9. Comandos útiles
+## 🧰 7. Comandos útiles
 
 Ver logs de la API en EC2:
 ```bash
@@ -215,12 +164,11 @@ nohup dotnet /home/ec2-user/BTG.Funds.API/BTG.Funds.Api/out/BTG.Funds.Api.dll --
 
 ## 🏁 Conclusión
 
-Esta configuración deja completamente desplegado el ecosistema **BTG Funds**:
+Esta configuración deja completamente desplegado el backend **BTG Funds**:
 - 🌐 **Backend:** .NET 8 en EC2  
 - 🗄️ **Base de datos:** MongoDB Atlas con datos semilla  
-- 💻 **Frontend:** Angular en S3 (host estático público)  
 - 🧱 **Infraestructura:** Automatizada con CloudFormation  
 
 ---
 
-© 2025 BTG Funds - Full Stack Cloud Deployment
+© 2025 BTG Funds - Backend Cloud Deployment
